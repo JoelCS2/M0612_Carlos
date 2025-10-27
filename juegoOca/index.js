@@ -55,47 +55,51 @@ function tirarDado() {
   // Generar número aleatorio entre 1 y 6
   const dado = Math.floor(Math.random() * 6) + 1;
 
+  // Definir dinámicamente el jugador actual y su posición
+  let jugadorActual, posicionActual;
+
   if (turnoJugador1) {
 
+    jugadorActual = 1;
     posicionJugador1 += dado;
 
-    //son las 36 casillas que tiene mi tablero
-
     if (posicionJugador1 > 36){
-        posicionJugador1 = 36;
-        divResultadoDado.textContent = `Jugador 1 sacó un ${dado}`;
-    }
+      posicionJugador1 = 36;
+      posicionActual = posicionJugador1;
+    } 
 
   } else {
 
+    jugadorActual = 2;
     posicionJugador2 += dado;
 
     if (posicionJugador2 > 36){
 
-        posicionJugador2 = 36;
-        divResultadoDado.textContent = `Jugador 2 sacó un ${dado}`;
+      posicionJugador2 = 36;
+      posicionActual = posicionJugador2;
 
     } 
   }
 
+  // Mover la ficha del jugador actual
+  moverFicha(jugadorActual, posicionActual);
+
   // Mostrar posiciones actualizadas
   actualizarPosiciones();
 
-  // Verificar si alguien ganó
-  if (posicionJugador1 === 36) {
+  // Mostrar resultado del dado
+  divResultadoDado.textContent = `Jugador ${jugadorActual} sacó un ${dado}`;
 
-    divResultadoDado.textContent = "🎉 ¡Jugador 1 ha ganado!";
+  // Verificar ganador
+  if (posicionActual === 36) {
+    divResultadoDado.textContent = `🎉 ¡Jugador ${jugadorActual} ha ganado!`;
     botonTirarDado.disabled = true;
-
-  } else if (posicionJugador2 === 36) {
-    divResultadoDado.textContent = "🎉 ¡Jugador 2 ha ganado!";
-    botonTirarDado.disabled = true;
-    
   }
 
-  // Cambiar turno, le digo que es para el siguiente jugador
+  // Cambiar turno
   turnoJugador1 = !turnoJugador1;
 }
+
 
 function actualizarPosiciones() {
 
@@ -105,10 +109,16 @@ function actualizarPosiciones() {
 }
 
 function moverFicha(jugador, posicion) {
-  const ficha1 = document.querySelector(`#fichaJugador1`);
-  const ficha2 = document.querySelector(`#fichaJugador2`);
+  // Seleccionamos la ficha correcta según el jugador
+  const ficha = document.querySelector(`#fichaJugador${jugador}`);
 
-  const casilla = posiciones[posicion - 1]; // array empieza en 0
-  ficha.style.left = `${casilla.x}%`;
-  ficha.style.top = `${casilla.y}%`;
+  // Ajustamos el índice para acceder al array (array empieza en 0)
+  const casilla = posiciones[posicion - 1];
+
+  // Si la casilla no existe (posicion 0), salimos
+  if (!casilla) return;
+
+  // Movemos la ficha usando las coordenadas de tu array
+  ficha.style.left = `${casilla.x}px`;
+  ficha.style.top = `${casilla.y}px`;
 }
