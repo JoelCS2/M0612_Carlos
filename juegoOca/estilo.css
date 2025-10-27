@@ -1,0 +1,38 @@
+body {
+  text-align: center;
+  background-color: aqua;
+  font-family: Arial, sans-serif;
+}
+
+#tablero img {
+  width: 800px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+#tirarDado {
+  font-size: 20px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px gray;
+  background-color: lightgreen;
+  transition: 0.3s;
+}
+
+#tirarDado:hover {
+  background-color: limegreen;
+  transition: 0.3s;
+}
+
+#resultadoDado {
+  margin-top: 15px;
+  font-size: 22px;
+}
+
+#resultadoDado {
+  margin-top: 15px;
+  font-size: 22px;
+  color: green;
+}
