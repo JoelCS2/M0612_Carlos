@@ -44,6 +44,7 @@ body {
   position: absolute;
   top: 100px; /* Posición inicial */
   left: 100px; /* Posición inicial */
+  transition: left 0.5s, top 0.5s;
 }
 
 #fichaJugador2 {
@@ -54,6 +55,7 @@ body {
   position: absolute;
   top: 100px; /* Posición inicial */
   left: 150px; /* Posición inicial */
+  transition: left 0.5s, top 0.5s;
 }
 
 #dadoJugador1 {
